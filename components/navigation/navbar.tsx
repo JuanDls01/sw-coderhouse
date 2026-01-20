@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { NavLink } from "./nav-link";
 import { SaberColorPicker } from "./saber-color-picker";
+import { MobileNav } from "./mobile-nav";
 import { NAV_LINKS } from "@/utils/consts";
 
 export function Navbar() {
@@ -19,7 +20,7 @@ export function Navbar() {
           />
         </Link>
 
-        <div className="flex items-center gap-6 font-roboto-mono">
+        <div className="hidden items-center gap-6 font-roboto-mono md:flex">
           {NAV_LINKS.map((link) => (
             <NavLink key={link.href} href={link.href}>
               {link.label}
@@ -27,7 +28,11 @@ export function Navbar() {
           ))}
         </div>
 
-        <SaberColorPicker />
+        <div className="hidden md:block">
+          <SaberColorPicker />
+        </div>
+
+        <MobileNav />
       </div>
     </nav>
   );
