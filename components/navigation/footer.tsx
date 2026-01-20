@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { Icons, type Icon } from "@/components/ui/icons";
+import { Icons } from "@/components/ui/icons";
 
 const SOCIAL_LINKS = [
   {
