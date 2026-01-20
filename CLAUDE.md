@@ -15,7 +15,7 @@ IMPORTANT: When you detect any of these contexts, IMMEDIATELY read the correspon
 | Context                                | Read this file                       |
 | -------------------------------------- | ------------------------------------ |
 | React components, hooks, JSX           | `.claude/skills/react-19/SKILL.md`   |
-| Next.js, app router, server components | `.claude/skills/nextjs-16/SKILL.md`  |
+| Next.js, app router, server components | `.claude/skills/next-16/SKILL.md`    |
 | TypeScript types, interfaces, generics | `.claude/skills/typescript/SKILL.md` |
 
 ### How to use skills
