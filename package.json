@@ -10,6 +10,7 @@
     "prepare": "husky"
   },
   "dependencies": {
+    "@ai-sdk/anthropic": "^3.0.17",
     "@ai-sdk/google": "3.0.10",
     "@ai-sdk/react": "3.0.44",
     "@radix-ui/react-dialog": "^1.1.15",

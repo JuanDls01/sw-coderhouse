@@ -18,8 +18,8 @@ export default function NotFound() {
           </span>
           <div className="relative -mx-8 md:-mx-12">
             <Image
-              src="/dark-vader.png"
-              alt="Death Star"
+              src="/darth-vader-404.png"
+              alt="Darth Vader 404"
               width={300}
               height={300}
               className="w-44 h-44 md:w-48 md:h-48 lg:w-72 lg:h-72 object-contain"
