@@ -1,6 +1,6 @@
-"use client";
+'use client';
 
-import { useEffect, useRef } from "react";
+import { useEffect, useRef } from 'react';
 
 interface Star {
   x: number;
@@ -17,7 +17,7 @@ interface StarFieldProps {
   className?: string;
 }
 
-export function StarField({ starCount = 200, className = "" }: StarFieldProps) {
+export function StarField({ starCount = 200, className = '' }: StarFieldProps) {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const starsRef = useRef<Star[]>([]);
   const animationRef = useRef<number>(0);
@@ -26,7 +26,7 @@ export function StarField({ starCount = 200, className = "" }: StarFieldProps) {
     const canvas = canvasRef.current;
     if (!canvas) return;
 
-    const ctx = canvas.getContext("2d");
+    const ctx = canvas.getContext('2d');
     if (!ctx) return;
 
     const resizeCanvas = () => {
@@ -57,20 +57,10 @@ export function StarField({ starCount = 200, className = "" }: StarFieldProps) {
         const currentOpacity = star.opacity * (0.3 + twinkle * 0.7);
 
         // Draw star with glow effect
-        const gradient = ctx.createRadialGradient(
-          star.x,
-          star.y,
-          0,
-          star.x,
-          star.y,
-          star.size * 2,
-        );
+        const gradient = ctx.createRadialGradient(star.x, star.y, 0, star.x, star.y, star.size * 2);
         gradient.addColorStop(0, `rgba(255, 255, 255, ${currentOpacity})`);
-        gradient.addColorStop(
-          0.5,
-          `rgba(255, 255, 255, ${currentOpacity * 0.5})`,
-        );
-        gradient.addColorStop(1, "rgba(255, 255, 255, 0)");
+        gradient.addColorStop(0.5, `rgba(255, 255, 255, ${currentOpacity * 0.5})`);
+        gradient.addColorStop(1, 'rgba(255, 255, 255, 0)');
 
         ctx.beginPath();
         ctx.arc(star.x, star.y, star.size * 2, 0, Math.PI * 2);
@@ -90,10 +80,10 @@ export function StarField({ starCount = 200, className = "" }: StarFieldProps) {
     resizeCanvas();
     animationRef.current = requestAnimationFrame(animate);
 
-    window.addEventListener("resize", resizeCanvas);
+    window.addEventListener('resize', resizeCanvas);
 
     return () => {
-      window.removeEventListener("resize", resizeCanvas);
+      window.removeEventListener('resize', resizeCanvas);
       cancelAnimationFrame(animationRef.current);
     };
   }, [starCount]);
@@ -101,9 +91,9 @@ export function StarField({ starCount = 200, className = "" }: StarFieldProps) {
   return (
     <canvas
       ref={canvasRef}
-      className={`fixed inset-0 pointer-events-none ${className}`}
+      className={`pointer-events-none fixed inset-0 ${className}`}
       style={{ zIndex: 0 }}
-      aria-hidden="true"
+      aria-hidden='true'
     />
   );
 }

@@ -1,10 +1,6 @@
-import {
-  EntityCard,
-  type StatItemConfig,
-  type BadgeConfig,
-} from "@/components/ui/entity-card";
-import { Icons } from "@/components/ui/icons";
-import { formatStarshipCapacity } from "@/utils/formatStarshipCapacity";
+import { EntityCard, type StatItemConfig, type BadgeConfig } from '@/components/ui/entity-card';
+import { Icons } from '@/components/ui/icons';
+import { formatStarshipCapacity } from '@/utils/formatStarshipCapacity';
 
 export interface StarshipCardProps {
   name: string;
@@ -30,24 +26,24 @@ export function StarshipCard({
   films,
 }: StarshipCardProps) {
   const badges: BadgeConfig[] = [
-    { label: "Clase", value: starshipClass, variant: "default" },
-    { label: "Peliculas", value: films, variant: "outline" },
+    { label: 'Clase', value: starshipClass, variant: 'default' },
+    { label: 'Peliculas', value: films, variant: 'outline' },
   ];
 
   const stats: StatItemConfig[] = [
-    { icon: Icons.Gauge, label: "Largo", value: length, unit: "M" },
+    { icon: Icons.Gauge, label: 'Largo', value: length, unit: 'M' },
     {
       icon: Icons.Zap,
-      label: "velocidad",
+      label: 'velocidad',
       value: maxAtmospheringSpeed,
-      unit: "KM/H",
+      unit: 'KM/H',
     },
-    { icon: Icons.Users, label: "Tripulación", value: crew },
+    { icon: Icons.Users, label: 'Tripulación', value: crew },
     {
       icon: Icons.Package,
-      label: "Carga",
+      label: 'Carga',
       value: formatStarshipCapacity(cargoCapacity),
-      unit: "KG",
+      unit: 'KG',
     },
   ];
 
@@ -60,11 +56,7 @@ export function StarshipCard({
         badges={badges}
       />
       <EntityCard.Content>
-        <EntityCard.Stats
-          items={stats}
-          columns={2}
-          title="Especificaciones Técnicas"
-        />
+        <EntityCard.Stats items={stats} columns={2} title='Especificaciones Técnicas' />
       </EntityCard.Content>
     </EntityCard>
   );

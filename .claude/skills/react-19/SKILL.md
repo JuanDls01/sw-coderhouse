@@ -6,7 +6,7 @@ description: >
 license: Apache-2.0
 metadata:
   author: JuanDls01
-  version: "1.0"
+  version: '1.0'
 ---
 
 ## No Manual Memoization (REQUIRED)
@@ -33,11 +33,11 @@ const handleClick = useCallback((id) => console.log(id), []);
 
 ```typescript
 // ✅ ALWAYS: Named imports
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef } from 'react';
 
 // ❌ NEVER
-import React from "react";
-import * as React from "react";
+import React from 'react';
+import * as React from 'react';
 ```
 
 ## Server Components First

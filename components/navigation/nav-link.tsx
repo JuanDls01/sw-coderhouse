@@ -1,7 +1,7 @@
-"use client";
+'use client';
 
-import Link from "next/link";
-import { usePathname } from "next/navigation";
+import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 
 interface NavLinkProps {
   href: string;
@@ -10,13 +10,13 @@ interface NavLinkProps {
 
 export function NavLink({ href, children }: NavLinkProps) {
   const pathname = usePathname();
-  const isActive = href === "/" ? pathname === "/" : pathname.startsWith(href);
+  const isActive = href === '/' ? pathname === '/' : pathname.startsWith(href);
 
   return (
     <Link
       href={href}
-      className={`text-sm uppercase tracking-widest text-primary pb-1 ${
-        isActive ? "font-bold border-b border-primary/50" : ""
+      className={`text-primary pb-1 text-sm tracking-widest uppercase ${
+        isActive ? 'border-primary/50 border-b font-bold' : ''
       }`}
     >
       {children}

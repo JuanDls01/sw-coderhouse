@@ -6,7 +6,7 @@ description: >
 license: Apache-2.0
 metadata:
   author: JuaniDls01
-  version: "2.0"
+  version: '2.0'
 ---
 
 ## Package Versions
@@ -33,10 +33,10 @@ npx @ai-sdk/codemod v6
 
 ```typescript
 // ❌ AI SDK 5
-import { Experimental_Agent as Agent } from "ai";
+import { Experimental_Agent as Agent } from 'ai';
 const agent = new Agent({
-  model: openai("gpt-4o"),
-  system: "You are a helpful assistant.",
+  model: openai('gpt-4o'),
+  system: 'You are a helpful assistant.',
   tools: {
     /* ... */
   },
@@ -44,10 +44,10 @@ const agent = new Agent({
 });
 
 // ✅ AI SDK 6
-import { ToolLoopAgent } from "ai";
+import { ToolLoopAgent } from 'ai';
 const agent = new ToolLoopAgent({
-  model: openai("gpt-4o"),
-  instructions: "You are a helpful assistant.", // renamed from system
+  model: openai('gpt-4o'),
+  instructions: 'You are a helpful assistant.', // renamed from system
   tools: {
     /* ... */
   },
@@ -59,11 +59,11 @@ const agent = new ToolLoopAgent({
 
 ```typescript
 // ❌ AI SDK 5
-import { convertToCoreMessages, type CoreMessage } from "ai";
+import { convertToCoreMessages, type CoreMessage } from 'ai';
 const coreMessages = convertToCoreMessages(messages);
 
 // ✅ AI SDK 6
-import { convertToModelMessages, type ModelMessage } from "ai";
+import { convertToModelMessages, type ModelMessage } from 'ai';
 const modelMessages = await convertToModelMessages(messages); // now async
 ```
 
@@ -71,21 +71,21 @@ const modelMessages = await convertToModelMessages(messages); // now async
 
 ```typescript
 // ❌ AI SDK 5
-import { generateObject } from "ai";
+import { generateObject } from 'ai';
 const { object } = await generateObject({
-  model: openai("gpt-4o"),
+  model: openai('gpt-4o'),
   schema: z.object({ recipe: z.object({ name: z.string() }) }),
-  prompt: "Generate a lasagna recipe.",
+  prompt: 'Generate a lasagna recipe.',
 });
 
 // ✅ AI SDK 6
-import { generateText, Output } from "ai";
+import { generateText, Output } from 'ai';
 const { output } = await generateText({
-  model: openai("gpt-4o"),
+  model: openai('gpt-4o'),
   output: Output.object({
     schema: z.object({ recipe: z.object({ name: z.string() }) }),
   }),
-  prompt: "Generate a lasagna recipe.",
+  prompt: 'Generate a lasagna recipe.',
 });
 ```
 
@@ -154,10 +154,10 @@ toModelOutput: ({ output }) => {
 
 ```typescript
 // ❌ AI SDK 5
-const model = openai.textEmbedding("text-embedding-3-small");
+const model = openai.textEmbedding('text-embedding-3-small');
 
 // ✅ AI SDK 6
-const model = openai.embedding("text-embedding-3-small");
+const model = openai.embedding('text-embedding-3-small');
 ```
 
 ### Token Usage
@@ -261,21 +261,21 @@ function Message({ message }: { message: UIMessage }) {
 ## ToolLoopAgent
 
 ```typescript
-import { ToolLoopAgent, tool, InferAgentUIMessage } from "ai";
-import { z } from "zod";
+import { ToolLoopAgent, tool, InferAgentUIMessage } from 'ai';
+import { z } from 'zod';
 
 export const weatherAgent = new ToolLoopAgent({
-  model: openai("gpt-4o"),
-  instructions: "You are a helpful weather assistant.",
+  model: openai('gpt-4o'),
+  instructions: 'You are a helpful weather assistant.',
   tools: {
     weather: tool({
-      description: "Get the weather in a location",
+      description: 'Get the weather in a location',
       inputSchema: z.object({
-        location: z.string().describe("The location to get weather for"),
+        location: z.string().describe('The location to get weather for'),
       }),
       execute: async ({ location }) => ({
         temperature: 72,
-        condition: "sunny",
+        condition: 'sunny',
       }),
     }),
   },
@@ -285,7 +285,7 @@ export type WeatherAgentUIMessage = InferAgentUIMessage<typeof weatherAgent>;
 
 // Usage
 const result = await weatherAgent.generate({
-  prompt: "What is the weather in San Francisco?",
+  prompt: 'What is the weather in San Francisco?',
 });
 ```
 
@@ -293,10 +293,10 @@ const result = await weatherAgent.generate({
 
 ```typescript
 const supportAgent = new ToolLoopAgent({
-  model: openai("gpt-4o"),
+  model: openai('gpt-4o'),
   callOptionsSchema: z.object({
     userId: z.string(),
-    accountType: z.enum(["free", "pro", "enterprise"]),
+    accountType: z.enum(['free', 'pro', 'enterprise']),
   }),
   prepareCall: ({ options, ...settings }) => ({
     ...settings,
@@ -307,8 +307,8 @@ const supportAgent = new ToolLoopAgent({
 });
 
 const result = await supportAgent.generate({
-  prompt: "How do I upgrade?",
-  options: { userId: "user_123", accountType: "free" },
+  prompt: 'How do I upgrade?',
+  options: { userId: 'user_123', accountType: 'free' },
 });
 ```
 
@@ -316,7 +316,7 @@ const result = await supportAgent.generate({
 
 ```typescript
 const agent = new ToolLoopAgent({
-  model: openai("gpt-4o"),
+  model: openai('gpt-4o'),
   tools: { weather: weatherTool },
   output: Output.object({
     schema: z.object({
@@ -328,7 +328,7 @@ const agent = new ToolLoopAgent({
 });
 
 const { output } = await agent.generate({
-  prompt: "What is the weather in SF and what should I wear?",
+  prompt: 'What is the weather in SF and what should I wear?',
 });
 ```
 
@@ -336,8 +336,8 @@ const { output } = await agent.generate({
 
 ```typescript
 // app/api/chat/route.ts
-import { createAgentUIStreamResponse } from "ai";
-import { weatherAgent } from "@/agents/weather-agent";
+import { createAgentUIStreamResponse } from 'ai';
+import { weatherAgent } from '@/agents/weather-agent';
 
 export async function POST(req: Request) {
   const { messages } = await req.json();
@@ -353,14 +353,14 @@ export async function POST(req: Request) {
 
 ```typescript
 // app/api/chat/route.ts
-import { openai } from "@ai-sdk/openai";
-import { streamText } from "ai";
+import { openai } from '@ai-sdk/openai';
+import { streamText } from 'ai';
 
 export async function POST(req: Request) {
   const { messages } = await req.json();
 
   const result = await streamText({
-    model: openai("gpt-4o"),
+    model: openai('gpt-4o'),
     messages,
   });
 
@@ -374,14 +374,11 @@ export async function POST(req: Request) {
 
 ```typescript
 tool({
-  description: "Get the weather in a location",
+  description: 'Get the weather in a location',
   inputSchema: z.object({
-    location: z.string().describe("The location to get weather for"),
+    location: z.string().describe('The location to get weather for'),
   }),
-  inputExamples: [
-    { input: { location: "San Francisco" } },
-    { input: { location: "London" } },
-  ],
+  inputExamples: [{ input: { location: 'San Francisco' } }, { input: { location: 'London' } }],
   execute: async ({ location }) => {
     /* ... */
   },
@@ -392,9 +389,9 @@ tool({
 
 ```typescript
 const runCommand = tool({
-  description: "Run a shell command",
+  description: 'Run a shell command',
   inputSchema: z.object({
-    command: z.string().describe("The shell command to execute"),
+    command: z.string().describe('The shell command to execute'),
   }),
   needsApproval: true, // always require approval
   execute: async ({ command }) => {
@@ -404,11 +401,11 @@ const runCommand = tool({
 
 // Conditional approval
 const runCommand = tool({
-  description: "Run a shell command",
+  description: 'Run a shell command',
   inputSchema: z.object({
     command: z.string(),
   }),
-  needsApproval: async ({ command }) => command.includes("rm -rf"),
+  needsApproval: async ({ command }) => command.includes('rm -rf'),
   execute: async ({ command }) => {
     /* ... */
   },
@@ -419,13 +416,13 @@ const runCommand = tool({
 
 ```typescript
 const weatherTool = tool({
-  description: "Get the weather",
+  description: 'Get the weather',
   inputSchema: z.object({ location: z.string() }),
   execute: ({ location }) => ({
     temperature: 72 + Math.floor(Math.random() * 21) - 10,
   }),
   toModelOutput: async ({ input, output }) => ({
-    type: "text",
+    type: 'text',
     value: `Weather in ${input.location} is ${output.temperature}°F.`,
   }),
 });
@@ -435,8 +432,8 @@ const weatherTool = tool({
 
 ```typescript
 // app/api/chat/route.ts
-import { toBaseMessages, toUIMessageStream } from "@ai-sdk/langchain";
-import { createUIMessageStreamResponse } from "ai";
+import { toBaseMessages, toUIMessageStream } from '@ai-sdk/langchain';
+import { createUIMessageStreamResponse } from 'ai';
 
 export async function POST(req: Request) {
   const { messages } = await req.json();
@@ -455,13 +452,13 @@ export async function POST(req: Request) {
 ### HTTP Transport
 
 ```typescript
-import { createMCPClient } from "@ai-sdk/mcp";
+import { createMCPClient } from '@ai-sdk/mcp';
 
 const mcpClient = await createMCPClient({
   transport: {
-    type: "http",
-    url: "https://your-server.com/mcp",
-    headers: { Authorization: "Bearer my-api-key" },
+    type: 'http',
+    url: 'https://your-server.com/mcp',
+    headers: { Authorization: 'Bearer my-api-key' },
   },
 });
 
@@ -473,13 +470,13 @@ const tools = await mcpClient.tools();
 ```typescript
 const resources = await mcpClient.listResources();
 const resourceData = await mcpClient.readResource({
-  uri: "file:///example/document.txt",
+  uri: 'file:///example/document.txt',
 });
 
 const prompts = await mcpClient.experimental_listPrompts();
 const prompt = await mcpClient.experimental_getPrompt({
-  name: "code_review",
-  arguments: { code: "function add(a, b) { return a + b; }" },
+  name: 'code_review',
+  arguments: { code: 'function add(a, b) { return a + b; }' },
 });
 ```
 
@@ -488,7 +485,7 @@ const prompt = await mcpClient.experimental_getPrompt({
 ### Anthropic
 
 ```typescript
-import { anthropic } from "@ai-sdk/anthropic";
+import { anthropic } from '@ai-sdk/anthropic';
 
 const codeExecution = anthropic.tools.codeExecution_20250825();
 const memory = anthropic.tools.memory_20250818({
@@ -501,7 +498,7 @@ const memory = anthropic.tools.memory_20250818({
 ### OpenAI
 
 ```typescript
-import { openai } from "@ai-sdk/openai";
+import { openai } from '@ai-sdk/openai';
 
 const shell = openai.tools.shell({
   execute: async ({ action }) => {
@@ -510,20 +507,20 @@ const shell = openai.tools.shell({
 });
 
 const mcp = openai.tools.mcp({
-  serverLabel: "my-mcp-server",
-  serverUrl: "https://mcp.example.com/",
-  allowedTools: ["tool1", "tool2"],
+  serverLabel: 'my-mcp-server',
+  serverUrl: 'https://mcp.example.com/',
+  allowedTools: ['tool1', 'tool2'],
 });
 ```
 
 ### Google
 
 ```typescript
-import { google } from "@ai-sdk/google";
+import { google } from '@ai-sdk/google';
 
 const googleMaps = google.tools.googleMaps();
 const fileSearch = google.tools.fileSearch({
-  fileSearchStoreNames: ["fileSearchStores/my-store-123"],
+  fileSearchStoreNames: ['fileSearchStores/my-store-123'],
   topK: 10,
 });
 ```
@@ -531,10 +528,10 @@ const fileSearch = google.tools.fileSearch({
 ### xAI
 
 ```typescript
-import { xai } from "@ai-sdk/xai";
+import { xai } from '@ai-sdk/xai';
 
 const webSearch = xai.tools.webSearch({
-  allowedDomains: ["wikipedia.org", "github.com"],
+  allowedDomains: ['wikipedia.org', 'github.com'],
 });
 const codeExecution = xai.tools.codeExecution();
 ```
@@ -542,19 +539,15 @@ const codeExecution = xai.tools.codeExecution();
 ## Reranking
 
 ```typescript
-import { rerank } from "ai";
-import { cohere } from "@ai-sdk/cohere";
+import { rerank } from 'ai';
+import { cohere } from '@ai-sdk/cohere';
 
-const documents = [
-  "sunny day at the beach",
-  "rainy afternoon in the city",
-  "snowy night in the mountains",
-];
+const documents = ['sunny day at the beach', 'rainy afternoon in the city', 'snowy night in the mountains'];
 
 const { ranking } = await rerank({
-  model: cohere.reranking("rerank-v3.5"),
+  model: cohere.reranking('rerank-v3.5'),
   documents,
-  query: "talk about rain",
+  query: 'talk about rain',
   topN: 2,
 });
 ```
@@ -566,11 +559,11 @@ npx @ai-sdk/devtools
 ```
 
 ```typescript
-import { wrapLanguageModel, gateway } from "ai";
-import { devToolsMiddleware } from "@ai-sdk/devtools";
+import { wrapLanguageModel, gateway } from 'ai';
+import { devToolsMiddleware } from '@ai-sdk/devtools';
 
 const devToolsEnabledModel = wrapLanguageModel({
-  model: gateway("anthropic/claude-sonnet-4.5"),
+  model: gateway('anthropic/claude-sonnet-4.5'),
   middleware: devToolsMiddleware(),
 });
 ```

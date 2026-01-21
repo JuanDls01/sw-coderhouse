@@ -1,7 +1,7 @@
-"use client";
+'use client';
 
-import { useChat } from "@ai-sdk/react";
-import { useRef, useEffect } from "react";
+import { useChat } from '@ai-sdk/react';
+import { useRef, useEffect } from 'react';
 import {
   ChatHeader,
   ChatEmptyState,
@@ -9,18 +9,18 @@ import {
   ChatLoadingIndicator,
   ChatErrorMessage,
   ChatInput,
-} from "@/components/chat";
+} from '@/components/chat';
 
 export default function Chat() {
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const { messages, sendMessage, status, error } = useChat({
     onError: (error) => {
-      console.error("[CHAT] Error:", error);
+      console.error('[CHAT] Error:', error);
     },
   });
 
   const scrollToBottom = () => {
-    messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
+    messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
   };
 
   useEffect(() => {
@@ -32,18 +32,18 @@ export default function Chat() {
   };
 
   return (
-    <div className="h-[calc(100vh-90px)] flex flex-col overflow-hidden">
+    <div className='flex h-[calc(100vh-90px)] flex-col overflow-hidden'>
       <ChatHeader />
 
-      <div className="flex-1 overflow-y-auto py-6 min-h-0">
-        <div className="container max-w-3xl space-y-4">
+      <div className='min-h-0 flex-1 overflow-y-auto py-6'>
+        <div className='container max-w-3xl space-y-4'>
           {messages.length === 0 && <ChatEmptyState />}
 
           {messages.map((message) => (
             <ChatMessage key={message.id} message={message} />
           ))}
 
-          {status === "submitted" && <ChatLoadingIndicator />}
+          {status === 'submitted' && <ChatLoadingIndicator />}
 
           {error && <ChatErrorMessage />}
 
@@ -51,7 +51,7 @@ export default function Chat() {
         </div>
       </div>
 
-      <ChatInput onSubmit={handleSubmit} isLoading={status === "submitted"} />
+      <ChatInput onSubmit={handleSubmit} isLoading={status === 'submitted'} />
     </div>
   );
 }

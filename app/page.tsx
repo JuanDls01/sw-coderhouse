@@ -1,8 +1,8 @@
-import Image from "next/image";
-import Link from "next/link";
-import { Icons } from "@/components/ui/icons";
-import { Typography } from "@/components/ui/typography";
-import { fetchResource, RESOURCE } from "@/lib/swapi";
+import Image from 'next/image';
+import Link from 'next/link';
+import { Icons } from '@/components/ui/icons';
+import { Typography } from '@/components/ui/typography';
+import { fetchResource, RESOURCE } from '@/lib/swapi';
 
 export async function getAllCounts() {
   const [characters, planets, starships] = await Promise.all([
@@ -22,79 +22,55 @@ export default async function Home() {
   const stats = await getAllCounts();
 
   return (
-    <main className="flex flex-col items-center justify-center min-h-[calc(100vh-160px)] px-6 py-12">
-      <div className="flex flex-col items-center gap-8 max-w-2xl text-center">
-        <Image
-          src="/starwars.png"
-          alt="Star Wars Logo"
-          width={400}
-          height={170}
-          priority
-        />
+    <main className='flex min-h-[calc(100vh-160px)] flex-col items-center justify-center px-6 py-12'>
+      <div className='flex max-w-2xl flex-col items-center gap-8 text-center'>
+        <Image src='/starwars.png' alt='Star Wars Logo' width={400} height={170} priority />
 
-        <Typography variant="h1" className="text-primary">
+        <Typography variant='h1' className='text-primary'>
           Explora la Galaxia
         </Typography>
 
-        <Typography className="text-muted-foreground text-lg">
-          Descubre personajes, naves estelares y planetas del universo de Star
-          Wars. Una galaxia muy, muy lejana te espera.
+        <Typography className='text-muted-foreground text-lg'>
+          Descubre personajes, naves estelares y planetas del universo de Star Wars. Una galaxia muy, muy
+          lejana te espera.
         </Typography>
 
-        <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-6 mt-8 w-full">
-          <StatCard
-            label="Personajes"
-            value={stats.characters}
-            href="/characters"
-          />
-          <StatCard label="Naves" value={stats.starships} href="/starships" />
-          <StatCard label="Planetas" value={stats.planets} href="/planets" />
+        <div className='mt-8 grid w-full grid-cols-1 gap-4 sm:grid-cols-3 sm:gap-6'>
+          <StatCard label='Personajes' value={stats.characters} href='/characters' />
+          <StatCard label='Naves' value={stats.starships} href='/starships' />
+          <StatCard label='Planetas' value={stats.planets} href='/planets' />
         </div>
 
         {/* CTA Holocron Chat */}
         <Link
-          href="/chat"
-          className="group mt-10 flex items-center gap-4 px-6 py-4 rounded-lg border border-primary/30 bg-primary/5 backdrop-blur-sm transition-all duration-300 hover:border-primary hover:bg-primary/10 hover:scale-[1.02] hover:shadow-lg hover:shadow-primary/20"
+          href='/chat'
+          className='group border-primary/30 bg-primary/5 hover:border-primary hover:bg-primary/10 hover:shadow-primary/20 mt-10 flex items-center gap-4 rounded-lg border px-6 py-4 backdrop-blur-sm transition-all duration-300 hover:scale-[1.02] hover:shadow-lg'
         >
-          <div className="flex h-10 w-10 items-center justify-center rounded-full border border-primary/40 bg-primary/10">
-            <Icons.MessageCircle className="size-5 text-primary" />
+          <div className='border-primary/40 bg-primary/10 flex h-10 w-10 items-center justify-center rounded-full border'>
+            <Icons.MessageCircle className='text-primary size-5' />
           </div>
-          <div className="flex flex-col items-start">
-            <span className="text-sm font-medium text-foreground">
-              Consulta el Holocron
-            </span>
-            <span className="text-xs text-muted-foreground">
-              Pregunta sobre el universo Star Wars
-            </span>
+          <div className='flex flex-col items-start'>
+            <span className='text-foreground text-sm font-medium'>Consulta el Holocron</span>
+            <span className='text-muted-foreground text-xs'>Pregunta sobre el universo Star Wars</span>
           </div>
-          <Icons.ChevronRight className="ml-auto size-5 text-primary/60 transition-transform group-hover:translate-x-1" />
+          <Icons.ChevronRight className='text-primary/60 ml-auto size-5 transition-transform group-hover:translate-x-1' />
         </Link>
       </div>
     </main>
   );
 }
 
-function StatCard({
-  label,
-  value,
-  href,
-}: {
-  label: string;
-  value: number;
-  href: string;
-}) {
+function StatCard({ label, value, href }: { label: string; value: number; href: string }) {
   return (
     <Link
       href={href}
-      className="group flex flex-col items-center gap-2 p-6 rounded-lg border border-border bg-card/50 backdrop-blur-sm transition-all duration-200 hover:border-primary hover:bg-card/80 hover:scale-[1.02] hover:shadow-lg hover:shadow-primary/10"
+      className='group border-border bg-card/50 hover:border-primary hover:bg-card/80 hover:shadow-primary/10 flex flex-col items-center gap-2 rounded-lg border p-6 backdrop-blur-sm transition-all duration-200 hover:scale-[1.02] hover:shadow-lg'
     >
-      <span className="text-4xl font-bold text-primary font-mono">{value}</span>
-      <span className="text-sm text-muted-foreground uppercase tracking-wider">
-        {label}
-      </span>
-      <span className="flex items-center gap-1 text-xs text-muted-foreground/70 group-hover:text-primary transition-colors">
+      <span className='text-primary font-mono text-4xl font-bold'>{value}</span>
+      <span className='text-muted-foreground text-sm tracking-wider uppercase'>{label}</span>
+      <span className='text-muted-foreground/70 group-hover:text-primary flex items-center gap-1 text-xs transition-colors'>
         Ver listado
-        <Icons.ChevronRight className="size-3 transition-transform group-hover:translate-x-0.5" />
+        <Icons.ChevronRight className='size-3 transition-transform group-hover:translate-x-0.5' />
       </span>
     </Link>
   );

@@ -1,5 +1,5 @@
 export function formatStarshipCapacity(capacity: string): string {
-  if (capacity === "unknown") return "Unknown";
+  if (capacity === 'unknown') return 'Unknown';
   const num = parseInt(capacity);
   if (isNaN(num)) return capacity;
   if (num >= 1000000) {
