@@ -17,17 +17,14 @@ export function PlanetCard({
   population,
 }: PlanetCardProps) {
   const stats: StatItemConfig[] = [
-    { icon: Icons.Earth, label: "Climate", value: climate },
-    { icon: Icons.Scale, label: "Gravity", value: gravity },
-    { icon: Icons.Users, label: "Population", value: population },
+    { icon: Icons.Earth, label: "Clima", value: climate },
+    { icon: Icons.Scale, label: "Gravedad", value: gravity },
+    { icon: Icons.Users, label: "Población", value: population },
   ];
 
   return (
     <EntityCard>
-      <EntityCard.Header
-        title={name}
-        subtitle={`Core Classification: ${terrain}`}
-      />
+      <EntityCard.Header title={name} subtitle={`Clasificación: ${terrain}`} />
       <EntityCard.Content>
         <EntityCard.Stats items={stats} columns={2} />
       </EntityCard.Content>

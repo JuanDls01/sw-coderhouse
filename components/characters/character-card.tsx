@@ -25,21 +25,21 @@ export function CharacterCard({
   gender,
 }: CharacterCardProps) {
   const badges: BadgeConfig[] = [
-    { label: "Films", value: films, variant: "default" },
-    { label: "Ships", value: ships, variant: "outline" },
+    { label: "Peliculas", value: films, variant: "default" },
+    { label: "Naves", value: ships, variant: "outline" },
   ];
 
   const stats: StatItemConfig[] = [
-    { icon: Icons.Height, label: "Height", value: height, unit: "CM" },
-    { icon: Icons.Weight, label: "Mass", value: mass, unit: "KG" },
-    { icon: Icons.User, label: "Gender", value: gender },
+    { icon: Icons.Height, label: "Altura", value: height, unit: "CM" },
+    { icon: Icons.Weight, label: "Peso", value: mass, unit: "KG" },
+    { icon: Icons.User, label: "Genero", value: gender },
   ];
 
   return (
     <EntityCard>
       <EntityCard.Header
         title={name}
-        subtitle={`Birth Year: ${birthYear}`}
+        subtitle={`Nacimiento: ${birthYear}`}
         badges={badges}
       />
       <EntityCard.Content>

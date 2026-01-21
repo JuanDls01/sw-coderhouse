@@ -30,22 +30,22 @@ export function StarshipCard({
   films,
 }: StarshipCardProps) {
   const badges: BadgeConfig[] = [
-    { label: "Class", value: starshipClass, variant: "default" },
-    { label: "Films", value: films, variant: "outline" },
+    { label: "Clase", value: starshipClass, variant: "default" },
+    { label: "Peliculas", value: films, variant: "outline" },
   ];
 
   const stats: StatItemConfig[] = [
-    { icon: Icons.Gauge, label: "Length", value: length, unit: "M" },
+    { icon: Icons.Gauge, label: "Largo", value: length, unit: "M" },
     {
       icon: Icons.Zap,
-      label: "Speed",
+      label: "velocidad",
       value: maxAtmospheringSpeed,
       unit: "KM/H",
     },
-    { icon: Icons.Users, label: "Crew", value: crew },
+    { icon: Icons.Users, label: "Tripulación", value: crew },
     {
       icon: Icons.Package,
-      label: "Cargo",
+      label: "Carga",
       value: formatStarshipCapacity(cargoCapacity),
       unit: "KG",
     },
@@ -55,7 +55,7 @@ export function StarshipCard({
     <EntityCard>
       <EntityCard.Header
         title={name}
-        subtitle={`Model: ${model}`}
+        subtitle={`Modelo: ${model}`}
         description={manufacturer}
         badges={badges}
       />
@@ -63,7 +63,7 @@ export function StarshipCard({
         <EntityCard.Stats
           items={stats}
           columns={2}
-          title="Technical Specifications Matrix"
+          title="Especificaciones Técnicas"
         />
       </EntityCard.Content>
     </EntityCard>
