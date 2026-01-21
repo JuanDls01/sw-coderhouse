@@ -1,4 +1,9 @@
-export const SWAPI_URL = "http://swapi.info/api";
+const SWAPI_PROVIDERS = {
+  PRIMARY: "https://swapi.dev/api",
+  FALLBACK: "https://swapi.info/api",
+} as const;
+
+export { SWAPI_PROVIDERS };
 
 export const NAV_LINKS = [
   { href: "/", label: "Inicio" },

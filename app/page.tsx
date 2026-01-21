@@ -1,33 +1,24 @@
 import Image from "next/image";
 import Link from "next/link";
 import { Typography } from "@/components/ui/typography";
-import { SWAPI_URL } from "@/utils/consts";
-import type { Character } from "@/types/character";
-import type { Starship } from "@/types/starship";
-import type { Planet } from "@/types/planet";
+import { fetchResource, RESOURCE } from "@/lib/swapi";
 
-async function getStats() {
-  const [people, starships, planets] = await Promise.all([
-    fetch(`${SWAPI_URL}/people`).then(
-      (res) => res.json() as Promise<Character[]>,
-    ),
-    fetch(`${SWAPI_URL}/starships`).then(
-      (res) => res.json() as Promise<Starship[]>,
-    ),
-    fetch(`${SWAPI_URL}/planets`).then(
-      (res) => res.json() as Promise<Planet[]>,
-    ),
+export async function getAllCounts() {
+  const [characters, planets, starships] = await Promise.all([
+    fetchResource(RESOURCE.PEOPLE, {}),
+    fetchResource(RESOURCE.PLANETS, {}),
+    fetchResource(RESOURCE.STARSHIPS, {}),
   ]);
 
   return {
-    characters: people.length,
-    starships: starships.length,
-    planets: planets.length,
+    characters: characters.count,
+    planets: planets.count,
+    starships: starships.count,
   };
 }
 
 export default async function Home() {
-  const stats = await getStats();
+  const stats = await getAllCounts();
 
   return (
     <main className="flex flex-col items-center justify-center min-h-[calc(100vh-160px)] px-6 py-12">

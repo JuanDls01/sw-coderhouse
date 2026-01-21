@@ -7,6 +7,7 @@ export default function PlanetsLoading() {
       <Typography variant="h1" className="my-6">
         Mundos del Borde Exterior
       </Typography>
+      <Skeleton className="h-9 max-w-md mb-6" />
       <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
         {Array.from({ length: 9 }).map((_, i) => (
           <Skeleton className="h-60" key={i} />
