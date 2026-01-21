@@ -1,5 +1,5 @@
-import { EntityCard, type StatItemConfig } from "@/components/ui/entity-card";
-import { Icons } from "@/components/ui/icons";
+import { EntityCard, type StatItemConfig } from '@/components/ui/entity-card';
+import { Icons } from '@/components/ui/icons';
 
 export interface PlanetCardProps {
   name: string;
@@ -9,17 +9,11 @@ export interface PlanetCardProps {
   population: string;
 }
 
-export function PlanetCard({
-  name,
-  terrain,
-  climate,
-  gravity,
-  population,
-}: PlanetCardProps) {
+export function PlanetCard({ name, terrain, climate, gravity, population }: PlanetCardProps) {
   const stats: StatItemConfig[] = [
-    { icon: Icons.Earth, label: "Clima", value: climate },
-    { icon: Icons.Scale, label: "Gravedad", value: gravity },
-    { icon: Icons.Users, label: "Población", value: population },
+    { icon: Icons.Earth, label: 'Clima', value: climate },
+    { icon: Icons.Scale, label: 'Gravedad', value: gravity },
+    { icon: Icons.Users, label: 'Población', value: population },
   ];
 
   return (

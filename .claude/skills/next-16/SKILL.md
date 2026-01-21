@@ -6,7 +6,7 @@ description: >
 license: Apache-2.0
 metadata:
   author: JuanDls01
-  version: "1.0"
+  version: '1.0'
 ---
 
 ## App Router File Conventions
@@ -83,7 +83,7 @@ async function Page() {
 
 ```typescript
 // app/api/users/route.ts
-import { NextRequest, NextResponse } from "next/server";
+import { NextRequest, NextResponse } from 'next/server';
 
 export async function GET(request: NextRequest) {
   const users = await db.users.findMany();
@@ -101,21 +101,21 @@ export async function POST(request: NextRequest) {
 
 ```typescript
 // middleware.ts (root level)
-import { NextResponse } from "next/server";
-import type { NextRequest } from "next/server";
+import { NextResponse } from 'next/server';
+import type { NextRequest } from 'next/server';
 
 export function middleware(request: NextRequest) {
-  const token = request.cookies.get("token");
+  const token = request.cookies.get('token');
 
-  if (!token && request.nextUrl.pathname.startsWith("/dashboard")) {
-    return NextResponse.redirect(new URL("/login", request.url));
+  if (!token && request.nextUrl.pathname.startsWith('/dashboard')) {
+    return NextResponse.redirect(new URL('/login', request.url));
   }
 
   return NextResponse.next();
 }
 
 export const config = {
-  matcher: ["/dashboard/:path*"],
+  matcher: ['/dashboard/:path*'],
 };
 ```
 
@@ -124,8 +124,8 @@ export const config = {
 ```typescript
 // Static
 export const metadata = {
-  title: "My App",
-  description: "Description",
+  title: 'My App',
+  description: 'Description',
 };
 
 // Dynamic
@@ -138,7 +138,7 @@ export async function generateMetadata({ params }) {
 ## server-only Package
 
 ```typescript
-import "server-only";
+import 'server-only';
 
 // This will error if imported in client component
 export async function getSecretData() {

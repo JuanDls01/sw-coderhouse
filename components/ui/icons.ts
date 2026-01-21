@@ -1,4 +1,4 @@
-import { FaGithub, FaLinkedin, FaTwitter } from "react-icons/fa";
+import { FaGithub, FaLinkedin, FaTwitter } from 'react-icons/fa';
 import {
   ChevronDown,
   ChevronUp,
@@ -23,7 +23,7 @@ import {
   MessageCircle,
   Send,
   type LucideIcon,
-} from "lucide-react";
+} from 'lucide-react';
 
 export type Icon = LucideIcon;
 

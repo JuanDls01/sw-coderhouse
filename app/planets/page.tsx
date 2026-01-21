@@ -1,20 +1,13 @@
-import { Suspense } from "react";
+import { Suspense } from 'react';
 
-import { Pagination } from "@/components/pagination";
-import { PlanetCard } from "@/components/planets/planet-card";
-import { SearchInput } from "@/components/search-input";
-import { Typography } from "@/components/ui/typography";
-import {
-  FetchOptions,
-  fetchResource,
-  PaginatedResponse,
-  RESOURCE,
-} from "@/lib/swapi";
-import { Planet } from "@/types/planet";
+import { Pagination } from '@/components/pagination';
+import { PlanetCard } from '@/components/planets/planet-card';
+import { SearchInput } from '@/components/search-input';
+import { Typography } from '@/components/ui/typography';
+import { FetchOptions, fetchResource, PaginatedResponse, RESOURCE } from '@/lib/swapi';
+import { Planet } from '@/types/planet';
 
-export async function getPlanets(
-  options: FetchOptions = {},
-): Promise<PaginatedResponse<Planet>> {
+export async function getPlanets(options: FetchOptions = {}): Promise<PaginatedResponse<Planet>> {
   return fetchResource<Planet>(RESOURCE.PLANETS, options);
 }
 
@@ -32,26 +25,23 @@ export default async function PlanetsPage({ searchParams }: PlanetsPageProps) {
   });
 
   return (
-    <main className="container mb-10">
-      <Typography variant={"h1"} className="my-6">
+    <main className='container mb-10'>
+      <Typography variant={'h1'} className='my-6'>
         Mundos del Borde Exterior
       </Typography>
 
       <Suspense fallback={null}>
-        <SearchInput
-          placeholder="Buscar planetas..."
-          className="mb-6 max-w-md"
-        />
+        <SearchInput placeholder='Buscar planetas...' className='mb-6 max-w-md' />
       </Suspense>
 
       {planets.length === 0 ? (
-        <p className="text-muted-foreground text-center py-10">
+        <p className='text-muted-foreground py-10 text-center'>
           No se encontraron planetas
-          {search ? ` para "${search}"` : ""}.
+          {search ? ` para "${search}"` : ''}.
         </p>
       ) : (
         <>
-          <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
+          <div className='grid grid-cols-1 gap-6 md:grid-cols-2 xl:grid-cols-3'>
             {planets.map((planet) => (
               <PlanetCard
                 key={planet.url}
@@ -65,7 +55,7 @@ export default async function PlanetsPage({ searchParams }: PlanetsPageProps) {
           </div>
 
           <Suspense fallback={null}>
-            <Pagination totalItems={count} className="mt-8" />
+            <Pagination totalItems={count} className='mt-8' />
           </Suspense>
         </>
       )}

@@ -1,11 +1,11 @@
-import "server-only";
+import 'server-only';
 
-import { SWAPI_PROVIDERS } from "@/utils/consts";
+import { SWAPI_PROVIDERS } from '@/utils/consts';
 
 export const RESOURCE = {
-  PEOPLE: "people",
-  PLANETS: "planets",
-  STARSHIPS: "starships",
+  PEOPLE: 'people',
+  PLANETS: 'planets',
+  STARSHIPS: 'starships',
 } as const;
 
 type Resource = (typeof RESOURCE)[keyof typeof RESOURCE];
@@ -31,9 +31,9 @@ async function fetchFromPrimary<T>(
   const { page = 1, search } = options;
   const params = new URLSearchParams();
 
-  params.set("page", String(page));
+  params.set('page', String(page));
   if (search) {
-    params.set("search", search);
+    params.set('search', search);
   }
 
   const url = `${SWAPI_PROVIDERS.PRIMARY}/${resource}/?${params.toString()}`;
@@ -63,9 +63,7 @@ async function fetchFromFallback<T extends { name: string }>(
 
   // Filter by search (case-insensitive name match)
   const filtered = search
-    ? allItems.filter((item) =>
-        item.name.toLowerCase().includes(search.toLowerCase()),
-      )
+    ? allItems.filter((item) => item.name.toLowerCase().includes(search.toLowerCase()))
     : allItems;
 
   // Paginate
@@ -93,9 +91,7 @@ export async function fetchResource<T extends { name: string }>(
   try {
     return await fetchFromPrimary<T>(resource, options);
   } catch {
-    console.warn(
-      `Primary SWAPI (swapi.dev) failed for ${resource}, falling back to swapi.info`,
-    );
+    console.warn(`Primary SWAPI (swapi.dev) failed for ${resource}, falling back to swapi.info`);
     return await fetchFromFallback<T>(resource, options);
   }
 }
