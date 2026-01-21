@@ -10,6 +10,7 @@ export const NAV_LINKS = [
   { href: "/characters", label: "Personajes" },
   { href: "/starships", label: "Naves" },
   { href: "/planets", label: "Planetas" },
+  { href: "/chat", label: "Holocron" },
 ] as const;
 
 export const SABER_COLOR_VAR = {

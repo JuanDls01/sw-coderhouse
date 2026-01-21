@@ -17,6 +17,8 @@ IMPORTANT: When you detect any of these contexts, IMMEDIATELY read the correspon
 | React components, hooks, JSX           | `.claude/skills/react-19/SKILL.md`   |
 | Next.js, app router, server components | `.claude/skills/next-16/SKILL.md`    |
 | TypeScript types, interfaces, generics | `.claude/skills/typescript/SKILL.md` |
+| AI SDK, Vercel AI, streaming           | `.claude/skills/ai-sdk-6/SKILL.md`   |
+| Zod schemas, validation                | `.claude/skills/zod-4/SKILL.md`      |
 
 ### How to use skills
 

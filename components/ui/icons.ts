@@ -20,6 +20,7 @@ import {
   Gauge,
   Package,
   Zap,
+  MessageCircle,
   type LucideIcon,
 } from "lucide-react";
 
@@ -50,4 +51,5 @@ export const Icons = {
   Gauge,
   Package,
   Zap,
+  MessageCircle,
 } as const;

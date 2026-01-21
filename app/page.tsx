@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+import { Icons } from "@/components/ui/icons";
 import { Typography } from "@/components/ui/typography";
 import { fetchResource, RESOURCE } from "@/lib/swapi";
 
@@ -40,7 +41,7 @@ export default async function Home() {
           Wars. Una galaxia muy, muy lejana te espera.
         </Typography>
 
-        <div className="grid grid-cols-3 gap-6 mt-8 w-full">
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-6 mt-8 w-full">
           <StatCard
             label="Personajes"
             value={stats.characters}
@@ -49,6 +50,25 @@ export default async function Home() {
           <StatCard label="Naves" value={stats.starships} href="/starships" />
           <StatCard label="Planetas" value={stats.planets} href="/planets" />
         </div>
+
+        {/* CTA Holocron Chat */}
+        <Link
+          href="/chat"
+          className="group mt-10 flex items-center gap-4 px-6 py-4 rounded-lg border border-primary/30 bg-primary/5 backdrop-blur-sm transition-all duration-300 hover:border-primary hover:bg-primary/10 hover:scale-[1.02] hover:shadow-lg hover:shadow-primary/20"
+        >
+          <div className="flex h-10 w-10 items-center justify-center rounded-full border border-primary/40 bg-primary/10">
+            <Icons.MessageCircle className="size-5 text-primary" />
+          </div>
+          <div className="flex flex-col items-start">
+            <span className="text-sm font-medium text-foreground">
+              Consulta el Holocron
+            </span>
+            <span className="text-xs text-muted-foreground">
+              Pregunta sobre el universo Star Wars
+            </span>
+          </div>
+          <Icons.ChevronRight className="ml-auto size-5 text-primary/60 transition-transform group-hover:translate-x-1" />
+        </Link>
       </div>
     </main>
   );
@@ -66,11 +86,15 @@ function StatCard({
   return (
     <Link
       href={href}
-      className="flex flex-col items-center gap-2 p-6 rounded-lg border border-border bg-card/50 backdrop-blur-sm transition-colors hover:border-primary hover:bg-card/80"
+      className="group flex flex-col items-center gap-2 p-6 rounded-lg border border-border bg-card/50 backdrop-blur-sm transition-all duration-200 hover:border-primary hover:bg-card/80 hover:scale-[1.02] hover:shadow-lg hover:shadow-primary/10"
     >
       <span className="text-4xl font-bold text-primary font-mono">{value}</span>
       <span className="text-sm text-muted-foreground uppercase tracking-wider">
         {label}
+      </span>
+      <span className="flex items-center gap-1 text-xs text-muted-foreground/70 group-hover:text-primary transition-colors">
+        Ver listado
+        <Icons.ChevronRight className="size-3 transition-transform group-hover:translate-x-0.5" />
       </span>
     </Link>
   );
