@@ -18,7 +18,6 @@ export const SABER_COLOR_VAR = {
   green: 'var(--saber-green)',
   red: 'var(--saber-red)',
   purple: 'var(--saber-purple)',
-  yellow: 'var(--saber-yellow)',
 } as const;
 
 export type SaberColor = keyof typeof SABER_COLOR_VAR;

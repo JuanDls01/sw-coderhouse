@@ -3,9 +3,13 @@ import Link from 'next/link';
 import { NavLink } from './nav-link';
 import { SaberColorPicker } from './saber-color-picker';
 import { MobileNav } from './mobile-nav';
-import { NAV_LINKS } from '@/utils/consts';
+import { NAV_LINKS, type SaberColor } from '@/utils/consts';
 
-export function Navbar() {
+interface NavbarProps {
+  initialSaberColor?: SaberColor;
+}
+
+export function Navbar({ initialSaberColor }: NavbarProps) {
   return (
     <nav className='border-border/40 bg-background/95 supports-backdrop-filter:bg-background/60 sticky top-0 z-50 w-full border-b backdrop-blur'>
       <div className='container flex h-16 items-center justify-between'>
@@ -29,7 +33,7 @@ export function Navbar() {
         </div>
 
         <div className='hidden md:block'>
-          <SaberColorPicker />
+          <SaberColorPicker initialColor={initialSaberColor} />
         </div>
 
         <MobileNav />
