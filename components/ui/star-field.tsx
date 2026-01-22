@@ -42,7 +42,7 @@ export function StarField({ starCount = 200, className = '' }: StarFieldProps) {
         size: Math.random() * 1.5 + 0.5,
         opacity: Math.random() * 0.8 + 0.2,
         speed: Math.random() * 0.02 + 0.005,
-        twinkleSpeed: Math.random() * 0.02 + 0.01,
+        twinkleSpeed: Math.random() * 0.03 + 0.01,
         twinklePhase: Math.random() * Math.PI * 2,
       }));
     };
@@ -54,7 +54,7 @@ export function StarField({ starCount = 200, className = '' }: StarFieldProps) {
         // Update twinkle
         star.twinklePhase += star.twinkleSpeed;
         const twinkle = (Math.sin(star.twinklePhase) + 1) / 2;
-        const currentOpacity = star.opacity * (0.3 + twinkle * 0.7);
+        const currentOpacity = star.opacity * (0.2 + twinkle * 0.8);
 
         // Draw star with glow effect
         const gradient = ctx.createRadialGradient(star.x, star.y, 0, star.x, star.y, star.size * 2);
