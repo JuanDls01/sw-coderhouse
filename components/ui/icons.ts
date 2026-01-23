@@ -22,6 +22,10 @@ import {
   Zap,
   MessageCircle,
   Send,
+  Upload,
+  ImageIcon,
+  Sparkles,
+  Download,
   type LucideIcon,
 } from 'lucide-react';
 
@@ -54,4 +58,8 @@ export const Icons = {
   Zap,
   MessageCircle,
   Send,
+  Upload,
+  Image: ImageIcon,
+  Sparkles,
+  Download,
 } as const;
