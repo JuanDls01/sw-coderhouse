@@ -41,20 +41,36 @@ export default async function Home() {
           <StatCard label='Planetas' value={stats.planets} href='/planets' />
         </div>
 
-        {/* CTA Holocron Chat */}
-        <Link
-          href='/chat'
-          className='group border-primary/30 bg-primary/5 hover:border-primary hover:bg-primary/10 hover:shadow-primary/20 mt-10 flex items-center gap-4 rounded-lg border px-6 py-4 backdrop-blur-sm transition-all duration-300 hover:scale-[1.02] hover:shadow-lg'
-        >
-          <div className='border-primary/40 bg-primary/10 flex h-10 w-10 items-center justify-center rounded-full border'>
-            <Icons.MessageCircle className='text-primary size-5' />
-          </div>
-          <div className='flex flex-col items-start'>
-            <span className='text-foreground text-sm font-medium'>Consulta el Holocron</span>
-            <span className='text-muted-foreground text-xs'>Pregunta sobre el universo Star Wars</span>
-          </div>
-          <Icons.ChevronRight className='text-primary/60 ml-auto size-5 transition-transform group-hover:translate-x-1' />
-        </Link>
+        {/* CTAs */}
+        <div className='mt-10 flex flex-col gap-4 sm:flex-row'>
+          <Link
+            href='/chat'
+            className='group border-primary/30 bg-primary/5 hover:border-primary hover:bg-primary/10 hover:shadow-primary/20 flex flex-1 items-center gap-4 rounded-lg border px-6 py-4 backdrop-blur-sm transition-all duration-300 hover:scale-[1.02] hover:shadow-lg'
+          >
+            <div className='border-primary/40 bg-primary/10 flex h-10 w-10 shrink-0 items-center justify-center rounded-full border'>
+              <Icons.MessageCircle className='text-primary size-5' />
+            </div>
+            <div className='flex flex-col items-start'>
+              <span className='text-foreground text-sm font-medium'>Consulta el Holocron</span>
+              <span className='text-muted-foreground text-xs'>Pregunta sobre el universo Star Wars</span>
+            </div>
+            <Icons.ChevronRight className='text-primary/60 ml-auto size-5 transition-transform group-hover:translate-x-1' />
+          </Link>
+
+          <Link
+            href='/transform'
+            className='group border-primary/30 bg-primary/5 hover:border-primary hover:bg-primary/10 hover:shadow-primary/20 flex flex-1 items-center gap-4 rounded-lg border px-6 py-4 backdrop-blur-sm transition-all duration-300 hover:scale-[1.02] hover:shadow-lg'
+          >
+            <div className='border-primary/40 bg-primary/10 flex h-10 w-10 shrink-0 items-center justify-center rounded-full border'>
+              <Icons.Sparkles className='text-primary size-5' />
+            </div>
+            <div className='flex flex-col items-start'>
+              <span className='text-foreground text-sm font-medium'>Holocreador</span>
+              <span className='text-muted-foreground text-xs'>Transfórmate en personaje Star Wars</span>
+            </div>
+            <Icons.ChevronRight className='text-primary/60 ml-auto size-5 transition-transform group-hover:translate-x-1' />
+          </Link>
+        </div>
       </div>
     </main>
   );
